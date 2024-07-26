@@ -20,7 +20,6 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
     implementation("io.ktor:ktor-client-logging:2.3.12")
-    implementation("com.google.cloud:google-cloud-aiplatform:1.26.2")
 }
 
 tasks.test {
