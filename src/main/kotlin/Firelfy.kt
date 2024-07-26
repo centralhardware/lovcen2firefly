@@ -1,5 +1,3 @@
-package me.centralhardware.telegram.lovcen.to.firefly
-
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
