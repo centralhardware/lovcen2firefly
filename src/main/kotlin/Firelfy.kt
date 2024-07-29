@@ -24,7 +24,7 @@ suspend fun createTransaction(transaction: Transaction) {
             Transactions(listOf(FireflyTransaction(
                 "withdrawal",
                 transaction.seller,
-                transaction.ts.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                transaction.ts.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 transaction.amount,
                 "",
                 System.getenv("SOURCE_NAME"),
