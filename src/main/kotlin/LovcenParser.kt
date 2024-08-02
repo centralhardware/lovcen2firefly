@@ -6,7 +6,7 @@ val smsRegex = Regex("Kartica:\\s*(?<card>\\d+)\\n" +
         "Vrijeme:\\s*(?<ts>\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2})\\n" +
         "Status:\\s*(?<status>\\w+)\\n" +
         "Opis:\\s*(?<seller>.*)\\n" +
-        "Raspolozivo:\\s*(?<balance>\\d+\\.\\d+)\\s*EUR")
+        "Raspolozivo:\\s*(?<balance>\\d+\\,\\d+\\.\\d+)\\s*EUR")
 fun parseSms(sms: String): Transaction {
     return smsRegex.matchEntire(sms)!!.let { matchRes ->
         Transaction(
@@ -14,8 +14,7 @@ fun parseSms(sms: String): Transaction {
             matchRes.groups["amount"]!!.value.toDouble(),
             matchRes.groups["ts"]!!.value.parse(),
             matchRes.groups["status"]!!.value == "ODOBRENO",
-            matchRes.groups["seller"]!!.value,
-            matchRes.groups["balance"]!!.value.toDouble()
+            matchRes.groups["seller"]!!.value
         )
     }
 }
@@ -25,8 +24,7 @@ data class Transaction(
     val amount: Double,
     val ts: LocalDateTime,
     val isSuccessful: Boolean,
-    val seller: String,
-    val balance: Double
+    val seller: String
 )
 
 val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
