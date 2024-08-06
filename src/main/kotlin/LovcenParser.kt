@@ -6,7 +6,7 @@ val smsRegex = Regex("Kartica:\\s*(?<card>\\d+)\\n" +
         "Vrijeme:\\s*(?<ts>\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2})\\n" +
         "Status:\\s*(?<status>\\w+)\\n" +
         "Opis:\\s*(?<seller>.*)\\n" +
-        "Raspolozivo:\\s*(?<balance>\\d+\\,\\d+\\.\\d+)\\s*EUR")
+        "Raspolozivo:\\s*(?<balance>(\\d+\\,\\d+\\.\\d+)|(\\d+\\.\\d+))\\s*EUR")
 fun parseSms(sms: String): Transaction {
     return smsRegex.matchEntire(sms)!!.let { matchRes ->
         Transaction(
