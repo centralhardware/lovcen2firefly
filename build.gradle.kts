@@ -1,9 +1,9 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.20"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    kotlin("plugin.serialization") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 group = "me.centralhardware.telegram.lovcen.to.firefly"
@@ -13,13 +13,15 @@ repositories {
     mavenCentral()
 }
 
+val ktorVersion = "2.3.12"
+
 dependencies {
-    implementation("dev.inmo:tgbotapi:15.0.0")
-    implementation("io.ktor:ktor-client-core-jvm:2.3.12")
-    implementation("io.ktor:ktor-client-auth:2.3.12")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
-    implementation("io.ktor:ktor-client-logging:2.3.12")
+    implementation("dev.inmo:tgbotapi:18.2.1")
+    implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-client-auth:$ktorVersion")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    implementation("io.ktor:ktor-client-logging:$ktorVersion")
 }
 
 tasks.test {
