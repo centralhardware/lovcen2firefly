@@ -1,18 +1,21 @@
-import com.sun.net.httpserver.HttpServer
 import dev.inmo.kslog.common.KSLog
-import dev.inmo.kslog.common.LogLevel
-import dev.inmo.kslog.common.setDefaultKSLog
+import dev.inmo.kslog.common.configure
+import dev.inmo.kslog.common.warning
+import dev.inmo.tgbotapi.bot.ktor.HealthCheckKtorPipelineStepsHolder
 import dev.inmo.tgbotapi.extensions.api.send.sendTextMessage
 import dev.inmo.tgbotapi.extensions.behaviour_builder.telegramBotWithBehaviourAndLongPolling
 import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import java.net.InetSocketAddress
 
+val healthChecker = HealthCheckKtorPipelineStepsHolder()
 suspend fun main() {
-    HttpServer.create().apply { bind(InetSocketAddress(80), 0); createContext("/health") { it.sendResponseHeaders(200, 0); it.responseBody.close() }; start() }
-    setDefaultKSLog(KSLog("lovcen2firely", minLoggingLevel = LogLevel.INFO))
-    telegramBotWithBehaviourAndLongPolling(System.getenv("TOKEN"), CoroutineScope(Dispatchers.IO)) {
+    KSLog.configure("lovcen2firefly")
+    telegramBotWithBehaviourAndLongPolling(
+        System.getenv("TOKEN"),
+        CoroutineScope(Dispatchers.IO),
+        defaultExceptionsHandler = {KSLog.warning(it)  },
+        builder = { pipelineStepsHolder = healthChecker },) {
         onText {
             val transaction = parseSms(it.content.text)
 
