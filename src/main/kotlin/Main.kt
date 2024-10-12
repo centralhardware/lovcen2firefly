@@ -1,22 +1,12 @@
 import dev.inmo.kslog.common.KSLog
 import dev.inmo.kslog.common.configure
-import dev.inmo.tgbotapi.HealthCheck
-import dev.inmo.tgbotapi.KSLogExceptionsHandler
-import dev.inmo.tgbotapi.botToken
 import dev.inmo.tgbotapi.extensions.api.send.sendTextMessage
-import dev.inmo.tgbotapi.extensions.behaviour_builder.telegramBotWithBehaviourAndLongPolling
 import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onText
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import dev.inmo.tgbotapi.longPolling
 
 suspend fun main() {
     KSLog.configure("lovcen2firefly")
-    telegramBotWithBehaviourAndLongPolling(
-        botToken,
-        CoroutineScope(Dispatchers.IO),
-        defaultExceptionsHandler = KSLogExceptionsHandler
-    ) {
-        HealthCheck.addBot(this)
+    longPolling {
         onText {
             val transaction = parseSms(it.content.text)
 
