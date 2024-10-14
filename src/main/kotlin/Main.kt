@@ -1,11 +1,10 @@
-import dev.inmo.kslog.common.KSLog
-import dev.inmo.kslog.common.configure
+import dev.inmo.tgbotapi.AppConfig
 import dev.inmo.tgbotapi.extensions.api.send.sendTextMessage
 import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onText
 import dev.inmo.tgbotapi.longPolling
 
 suspend fun main() {
-    KSLog.configure("lovcen2firefly")
+    AppConfig.init("lovcen2firefly")
     longPolling {
         onText {
             val transaction = parseSms(it.content.text)
