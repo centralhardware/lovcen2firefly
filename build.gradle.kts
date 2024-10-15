@@ -18,7 +18,7 @@ val ktorVersion = "2.3.12"
 
 dependencies {
     implementation("dev.inmo:tgbotapi:18.2.1")
-    implementation("com.github.centralhardware:telegram-bot-commons:8de2c6b7ae")
+    implementation("com.github.centralhardware:telegram-bot-commons:d289ac997d")
     implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
     implementation("io.ktor:ktor-client-auth:$ktorVersion")
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
