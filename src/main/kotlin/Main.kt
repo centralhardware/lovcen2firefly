@@ -10,18 +10,19 @@ import me.centralhardware.telegram.restrictAccess
 suspend fun main() {
     AppConfig.init("lovcen2firefly")
     longPolling({ restrictAccess(EnvironmentVariableUserAccessChecker()) }) {
-        onText {
-            val transaction = parseSms(it.content.text)
+            onText {
+                val transaction = parseSms(it.content.text)
 
-            if (!transaction.isSuccessful) {
-                sendTextMessage(it.chat, "Не успешная транзакция")
-                return@onText
+                if (!transaction.isSuccessful) {
+                    sendTextMessage(it.chat, "Не успешная транзакция")
+                    return@onText
+                }
+
+                createTransaction(transaction)
+
+                sendTextMessage(it.chat, "Сохранено")
             }
-
-            createTransaction(transaction)
-
-            sendTextMessage(it.chat, "Сохранено")
         }
-
-    }.second.join()
+        .second
+        .join()
 }
