@@ -30,7 +30,7 @@ suspend fun createTransaction(transaction: Transaction) {
                         transaction.amount,
                         "",
                         System.getenv("SOURCE_NAME"),
-                        transaction.seller
+                        transaction.seller,
                     )
                 )
             )
@@ -50,5 +50,5 @@ data class FireflyTransaction(
     val amount: Double,
     @SerialName("category_name") val category: String,
     @SerialName("source_name") val sourceName: String,
-    @SerialName("destination_name") val destinationName: String
+    @SerialName("destination_name") val destinationName: String,
 )

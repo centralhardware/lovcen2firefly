@@ -18,7 +18,7 @@ fun parseSms(sms: String): Transaction {
             matchRes.groups["amount"]!!.value.toDouble(),
             matchRes.groups["ts"]!!.value.parse(),
             matchRes.groups["status"]!!.value == "ODOBRENO",
-            matchRes.groups["seller"]!!.value
+            matchRes.groups["seller"]!!.value,
         )
     }
 }
@@ -28,7 +28,7 @@ data class Transaction(
     val amount: Double,
     val ts: LocalDateTime,
     val isSuccessful: Boolean,
-    val seller: String
+    val seller: String,
 )
 
 val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
