@@ -15,12 +15,12 @@ repositories {
     maven("https://jitpack.io")
 }
 
-val ktorVersion = "2.3.12"
+val ktorVersion = "3.0.1"
 
 dependencies {
-    implementation("dev.inmo:tgbotapi:18.2.3")
-    implementation("com.github.centralhardware:telegram-bot-commons:af385ce6fe")
-    implementation("com.github.centralhardware:ktgbotapi-restrict-access-middleware:fe940713c2")
+    implementation("dev.inmo:tgbotapi:19.0.0")
+    implementation("com.github.centralhardware:telegram-bot-commons:176180cebd")
+    implementation("com.github.centralhardware:ktgbotapi-restrict-access-middleware:9b3be2e3d9")
     implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
     implementation("io.ktor:ktor-client-auth:$ktorVersion")
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
