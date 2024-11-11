@@ -17,7 +17,7 @@ repositories {
 val ktorVersion = "3.0.1"
 
 dependencies {
-    implementation("dev.inmo:tgbotapi:20.0.0")
+    implementation("dev.inmo:tgbotapi:20.0.1")
     implementation("com.github.centralhardware:telegram-bot-commons:d96b131958")
     implementation("com.github.centralhardware:ktgbotapi-restrict-access-middleware:0b03d52e37")
     implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
